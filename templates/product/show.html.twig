@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block full_height %}{% endblock %}
+
+{% block title %}{{ product.name }} - La boutique{% endblock %}
+
+{% block content %}
+    <div class="row align-items-center">
+        <div class="col-md-5">    
+            <img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid">
+        </div>
+        <div class="col-md-7 my-auto">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.subtitle }}</p>
+            <p>{{ (product.price / 100)|number_format(2) }} €</p>
+            <hr>
+            <p>{{ product.description }}</p>
+            <hr>
+            <a href="" class="btn btn-primary">Ajouter au panier</a>
+            <br><br>
+        </div>
+    </div>    
+{% endblock %}
