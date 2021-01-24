@@ -3,6 +3,7 @@
 namespace App\Classe;
 
 use App\Entity\Category;
+use App\Entity\Product;
 
 class Search
 {
@@ -10,6 +11,16 @@ class Search
     * @var string
     */
     public $string = '';
+
+    /**
+    * @var null/integer
+    */
+    public $min;
+
+    /**
+    * @var null/integer
+    */
+    public $max;
 
     /**
     * @var Category[]

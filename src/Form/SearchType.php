@@ -4,8 +4,11 @@ namespace App\Form;
 
 use App\Classe\Search;
 use App\Entity\Category;
+use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +33,22 @@ class SearchType extends AbstractType
                 'class' => Category::class,
                 'multiple' => true,
                 'expanded' => true
+            ])
+            ->add('min', MoneyType::class, [
+                'label' => 'Prix',
+                'required' => false,
+                'divisor' => 100,
+                'attr' => [
+                    'placeholder' => 'Prix min',
+                ]
+            ])
+            ->add('max', MoneyType::class, [
+                'label' => false,
+                'required' => false,
+                'divisor' => 100,
+                'attr' => [
+                    'placeholder' => 'Prix max',
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Filtrer',
