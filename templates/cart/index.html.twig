@@ -1,33 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Panier - La boutique{% endblock %}
+{% block full_height %}{% endblock %}
+
+{% block title %}Mon panier - La boutique{% endblock %}
 
 {% block content %}
     <div class="bg-light p-3">
-        <h1>Votre panier</h1>
+        <h1>Motre panier</h1>
     </div>
-    
+
     {% if items | length > 0 %}
+        <div class="text-right">
+            <a href="{{ path('cart_full_remove') }}" class="btn btn-danger pull-right mt-3 mb-3">Vider mon panier</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Produit</th>
-                    <th>illustration</th>
-                    <th class="text-center">Prix</th>
-                    <th class="text-center">Quantité</th>
-                    <th class="text-center">Total</th>
-                    <th></th>
+                    <th scope="col">Produit</th>
+                    <th scope="col"></th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in items %}
                     <tr>
-                        <td class="align-middle">{{ item.product.name }}</td>
-                        <td class="align-middle"><img class="mobile-thumbnail img-thumbnail rounded w-25"src="/uploads/{{item.product.illustration}}" alt="{{ item.product.name }}" ></td>
-                        <td class="align-middle text-center">{{ (item.product.price / 100)|number_format(2) }} €</td>
-                        <td class="align-middle text-center">{{ item.quantity }}</td>
-                        <td class="align-middle text-center">{{ ((item.product.price / 100)|number_format(2)) * item.quantity }} €</td>
-                        <td class="align-middle">
+                        <th scope="row">
+                            <img src="/uploads/{{item.product.illustration}}" alt="{{ item.product.name }}" height="75px">
+                        </th>
+                        <td>
+                            {{ item.product.name }}<br/>
+                            <small class="d-none d-lg-block">{{ item.product.subtitle }}</small>
+                        </td>
+                        <td>
+                            <a href="{{ path('cart_decrease', {'id': item.product.id}) }}" alt="Enlever une unité">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                            x {{ item.quantity }} 
+                            <a href="{{ path('cart_add', {'id': item.product.id}) }}" alt="Ajouter une unité">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </td>
+                        <td>{{ (item.product.price / 100)|number_format(2) }} €</td>
+                        <td>{{ (item.product.price * item.quantity / 100)|number_format(2) }} €</td>
+                        <td>
                             <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -35,15 +53,12 @@
                     </tr>
                 {% endfor %}
             </tbody>
-            <tfoot>
-                <tr>
-                    <td class="text-right" colspan="4">Total : </td>
-                    <td class="align-middle text-center">{{ (total / 100)|number_format(2) }} €</td>
-                </tr>
-            </tfoot>
         </table>
+        <div class="text-right">
+            <b>Total de mon panier : {{ (total / 100)|number_format(2) }} €</b><br>
+            <a href="#" class="btn btn-success pull-right mt-3 mb-3">Valider mon panier</a>
+        </div>
     {% else %}
-        <p>Votre panier est vide pour le moment.</p>
+        <b>Votre panier est vide pour le moment.</b>
     {% endif %}
-    
 {% endblock %}

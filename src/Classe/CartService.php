@@ -18,42 +18,44 @@ class CartService {
 
     public function add(int $id)
     {
-        $panier = $this->session->get('panier', []);
+        $cart = $this->session->get('cart', []);
 
-        if (!empty($panier[$id])) {
-            $panier[$id]++;
+        if (!empty($cart[$id])) {
+            $cart[$id]++;
         } else {
-            $panier[$id] = 1;
+            $cart[$id] = 1;
         }
 
-        $this->session->set('panier', $panier);
+        $this->session->set('cart', $cart);
     }
 
-    public function remove(int $id)
+    public function decrease(int $id)
     {
-        $panier = $this->session->get('panier', []);
+        $cart = $this->session->get('cart', []);
 
-        if (!empty($panier[$id])) {
-            unset($panier[$id]);
+        if ($cart[$id] > 1) {
+            $cart[$id]--;
+        } else {
+            unset($cart[$id]);
         }
 
-        $this->session->set('panier', $panier);
+        $this->session->set('cart', $cart);
     }
 
     public function getFullCart(): array
     {
-        $panier = $this->session->get('panier', []);
+        $cart = $this->session->get('cart', []);
 
-        $panierWithData = [];
+        $cartWithData = [];
 
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
+        foreach ($cart as $id => $quantity) {
+            $cartWithData[] = [
                 'product' => $this->productRepository->find($id),
                 'quantity' => $quantity
             ];
         }
 
-        return $panierWithData;
+        return $cartWithData;
     }
 
     public function getTotal(): float
@@ -65,5 +67,21 @@ class CartService {
         }
 
         return $total;
+    }
+
+    public function remove(int $id)
+    {
+        $cart = $this->session->get('cart', []);
+
+        if (!empty($cart[$id])) {
+            unset($cart[$id]);
+        }
+
+        $this->session->set('cart', $cart);
+    }
+
+    public function removeFullCart()
+    {
+        $this->session->remove('cart', []);
     }
 }

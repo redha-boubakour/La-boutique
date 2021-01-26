@@ -12,6 +12,7 @@
 
 .footer-full-height {
     text-align: center;
+    display: block;
     position: fixed;
     bottom: 0;
     bottom: 0;

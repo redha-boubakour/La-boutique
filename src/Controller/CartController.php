@@ -31,11 +31,31 @@ class CartController extends AbstractController
     }
 
     /**
+    * @route("/panier/decrease/{id}", name="cart_decrease")
+    */
+    public function decrease($id, CartService $cartService)
+    {
+        $cartService->decrease($id);
+
+        return $this->redirectToRoute('cart');
+    }
+
+    /**
     * @route("/panier/remove/{id}", name="cart_remove")
     */
     public function remove($id, CartService $cartService)
     {
         $cartService->remove($id);
+
+        return $this->redirectToRoute('cart');
+    }
+
+        /**
+    * @route("/panier/remove", name="cart_full_remove")
+    */
+    public function removeFullCart(CartService $cartService)
+    {
+        $cartService->removeFullCart();
 
         return $this->redirectToRoute('cart');
     }
