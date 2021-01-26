@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier - La boutique{% endblock %}
+
+{% block content %}
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+    
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>illustration</th>
+                    <th class="text-center">Prix</th>
+                    <th class="text-center">Quantité</th>
+                    <th class="text-center">Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td class="align-middle">{{ item.product.name }}</td>
+                        <td class="align-middle"><img class="mobile-thumbnail img-thumbnail rounded w-25"src="/uploads/{{item.product.illustration}}" alt="{{ item.product.name }}" ></td>
+                        <td class="align-middle text-center">{{ (item.product.price / 100)|number_format(2) }} €</td>
+                        <td class="align-middle text-center">{{ item.quantity }}</td>
+                        <td class="align-middle text-center">{{ ((item.product.price / 100)|number_format(2)) * item.quantity }} €</td>
+                        <td class="align-middle">
+                            <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-right" colspan="4">Total : </td>
+                    <td class="align-middle text-center">{{ (total / 100)|number_format(2) }} €</td>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p>Votre panier est vide pour le moment.</p>
+    {% endif %}
+    
+{% endblock %}

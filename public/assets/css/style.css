@@ -35,3 +35,9 @@
     display: block;
     margin-bottom: 5px;
 }
+
+@media (max-width: 850px) {
+    .mobile-thumbnail {
+        width: 60% !important;
+    }
+}

@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <style>
@@ -52,9 +53,11 @@
             </ul>
             <div class="navbar-item-custom">
                 {% if app.user %}
+                    <a href="{{ path('cart') }}">Mon panier <small>( )</small></a> |
                     <a href="{{ path('account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> | 
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
+                    <a href="{{ path('cart') }}">Mon panier <small>( )</small></a> |
                     <a href="{{ path('app_login') }}">Connexion</a> | 
                     <a href="{{ path('register') }}">inscription</a>
                 {% endif %}
