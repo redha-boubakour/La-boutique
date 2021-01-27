@@ -2,18 +2,19 @@
 
 namespace App\Classe;
 
-use App\Repository\ProductRepository;
+use App\Entity\Product;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartService {
 
     protected $session;
-    protected $productRepository;
+    protected $entityManager;
 
-    public function __construct(SessionInterface $session, ProductRepository $productRepository)
+    public function __construct(SessionInterface $session, EntityManagerInterface $entityManager)
     {
         $this->session = $session;
-        $this->productRepository = $productRepository;
+        $this->entityManager = $entityManager;
     }
 
     public function add(int $id)
@@ -49,8 +50,15 @@ class CartService {
         $cartWithData = [];
 
         foreach ($cart as $id => $quantity) {
+            $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
+
+            if (!$product_object) {
+                $this->remove($id);
+                continue;
+            }
+
             $cartWithData[] = [
-                'product' => $this->productRepository->find($id),
+                'product' => $product_object,
                 'quantity' => $quantity
             ];
         }
@@ -83,5 +91,10 @@ class CartService {
     public function removeFullCart()
     {
         $this->session->remove('cart', []);
+    }
+
+    public function countCart() 
+    {
+        return count($this->session->get('cart', []));
     }
 }

@@ -10,11 +10,13 @@
     padding: 15px 0;
 }
 
+.push {
+margin-top: 150px;
+}
+
 .footer-full-height {
     text-align: center;
-    display: block;
     position: fixed;
-    bottom: 0;
     bottom: 0;
     width: 100%;
     background-color: #343A40;

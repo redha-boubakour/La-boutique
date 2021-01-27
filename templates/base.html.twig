@@ -59,7 +59,7 @@
                     <a href="{{ path('app_login') }}">Connexion</a> | 
                     <a href="{{ path('register') }}">inscription</a>
                 {% endif %}
-                | <a href="{{ path('cart') }}">Mon panier <small>( )</small></a>
+                | <a href="{{ path('cart') }}">Mon panier <small>( {{ CartService.countCart() }} )</small></a>
             </div>
         </div>
     </nav>
@@ -124,6 +124,7 @@
 
     {% if block('full_height') is defined %}
         <!-- FOOTER -->
+        <div class="push"></div>
         <footer class="footer-full-height">
             <p class="navbar-item-custom">&copy; 2021 - La boutique</p>
             <a href="#">Politiques de confidentialité</a> | 
