@@ -6,8 +6,10 @@
 
 {% block content %}
     <a href="{{ path('account_address_add') }}" class="btn btn-info float-right">Ajouter une adresse</a>
-    <h1>Mes adresses</h1>
-    <a href="{{ path('account') }}">Retourner à mon compte</a><br><br>
+    <h1 class="h3 mb-3 font-weight-normal">Mes adresses</h1>
+    <a href="{{ path('account') }}">Retourner à mon compte</a>
+    <hr>
+    <br><br>
 
     {% if app.user.addresses | length == 0 %}
         Vous n'avez renseigné aucune adresse pour le moment.

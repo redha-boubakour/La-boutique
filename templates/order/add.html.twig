@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block full_height %}{% endblock %}
+
+{% block title %}Mon récapitulatif - La boutique{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-3 font-weight-normal">Mon récapitulatif</h1>
+    <p>Vérifier vos informations avant de payer votre commande.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Mon adresse de livraison : </strong><br>
+            <div class="order-sumary-item">
+                {{ delivery|raw }}
+            </div>
+
+            <hr>
+            <strong>Mon transporteur :</strong><br>
+            <div class="order-sumary-item">
+                {{ carrier.name }} <br>
+                {{ carrier.description }} <br>
+                {{ (carrier.price)|number_format(2) }} €
+            </div>
+        </div>
+        <div class="col-md-6">
+            <strong>Ma commande :</strong>
+            <div class="order-sumary">
+                {% for item in items %}
+                    <div class="row order-sumary-item">
+                        <div class="col-3">
+                            <img src="/uploads/{{item.product.illustration}}" alt="{{ item.product.name }}" height="75px">
+                        </div>
+                        <div class="col-6 my-auto">
+                            {{ item.product.name }}<br/>
+                            <small>x {{ item.quantity }}</small>
+                        </div>
+                        <div class="col-3 my-auto">{{ (item.product.price * item.quantity / 100)|number_format(2) }} €</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <hr>
+            <strong>Sous-total : {{ (total / 100)|number_format(2) }} €</strong><br>
+            <strong>Livraison : {{ (carrier.price)|number_format(2) }} €</strong>
+            <hr>
+            <strong>Total : {{ ((total / 100) + (carrier.price))|number_format(2) }}</strong>
+            <a href="#" class="btn btn-success btn-block mt-3">Payer | {{ ((total / 100) + (carrier.price))|number_format(2) }} €</a>
+        </div>
+    </div>
+{% endblock %}

@@ -5,8 +5,10 @@
 {% block title %}Mon compte - La boutique{% endblock %}
 
 {% block content %}
-    <h1>Mon compte</h1>
-    <p>Bienvenue {{ app.user.firstname }} !</p><br>
+    <h1 class="h3 mb-3 font-weight-normal">Mon compte</h1>
+    <p>Bienvenue {{ app.user.firstname }} !</p>
+    <hr>
+    <br>
     <ul>
         <li>
             <a href="{{ path('account_password') }}">Modifier mon mot de passe</a>

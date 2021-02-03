@@ -5,8 +5,10 @@
 {% block title %}Gérer une adresse - La boutique{% endblock %}
 
 {% block content %}
-    <h1>Gérer une adresse</h1>
-    <a href="{{ path('account_address') }}">Retourner à mes adresses</a><br><br>
+    <h1 class="h3 mb-3 font-weight-normal">Gérer une adresse</h1>
+    <a href="{{ path('account_address') }}">Retourner à mes adresses</a>
+    <hr>
+    <br><br>
 
     {{ form_start(form) }}
     <div class="row">

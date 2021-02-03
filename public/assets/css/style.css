@@ -49,3 +49,22 @@ margin-top: 150px;
     max-width: 600px;
     margin : 0 auto;
 }
+
+.form-check {
+    background-color: #E9EBED;
+    padding: 20px 40px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.order-sumary {
+    margin: 24px 0;
+    border-radius: 5px;
+    background-color: #E9EBED;
+}
+
+.order-sumary-item {
+    
+    padding: 15px;
+
+}

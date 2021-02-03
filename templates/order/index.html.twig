@@ -5,20 +5,34 @@
 {% block title %}Valider ma commande - La boutique{% endblock %}
 
 {% block content %}
-    <h1>Ma commande</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Ma commande</h1>
     <p>Veuillez choisir vos préférences :</p>
+    <hr>
     <div class="row">
         <div class="col-md-6">
             {% set formHtml %}
-                {{ form(form) }}
+                {{ form_start(form, {action:path('order_recap')}) }}
+                    {{ form_label(form.addresses, 'Votre adresse de livraison :') }}
+                    <a href=" {{ path('account_address_add') }} ">Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
             {% endset %}
-            {{ formHtml | replace({'[br]' : '<br/>'}) | raw}}
 
-            <b>Choisir mon transporteur</b>
+            {{ formHtml | replace({'[br]' : '<br/>'}) | raw}}
         </div>
         <div class="col-md-6">
-            <b>Récap de ma commande</b><br>
-            <b>Bouton "Payer"</b>
+            <p>Récapitulatif de ma commande :</p>
+            <div class="order-sumary">
+                {% for item in items %}
+                    <div class="row order-sumary-item">
+                        <div class="col-3"><img src="/uploads/{{item.product.illustration}}" alt="{{ item.product.name }}" height="75px"></div>
+                        <div class="col-5 my-auto">
+                            {{ item.product.name }}<br/>
+                        </div>
+                        <div class="col-2 my-auto">{{ (item.product.price / 100)|number_format(2) }} €</div>
+                        <div class="col-2 my-auto">x {{ item.quantity }}</div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

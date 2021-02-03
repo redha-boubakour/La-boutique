@@ -7,8 +7,9 @@
 {% block content %}
     <div class="bg-light p-3">
         <a href="{{ path('products') }}" class="btn btn-info float-right">Nos produits !</a>
-        <h1>Mon panier</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Mon panier</h1>
     </div>
+    <hr>
 
     {% if items | length > 0 %}
         <div class="text-right">
