@@ -45,9 +45,6 @@
                     <a class="nav-link" href="{{ path('products') }}">Nos produits</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Qui sommes-nous ?</a>
-                </li>
-                <li class="nav-item active">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
@@ -57,9 +54,21 @@
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
                     <a href="{{ path('app_login') }}">Connexion</a> | 
-                    <a href="{{ path('register') }}">inscription</a>
+                    <a href="{{ path('register') }}">Inscription</a>
                 {% endif %}
-                | <a href="{{ path('cart') }}">Mon panier <small>( {{ CartService.countCart() }} )</small></a>
+                | 
+                <a href="{{ path('cart') }}">
+                    Mon panier 
+                    <small>( {{ CartService.countCart() }} 
+                    {% if CartService.countCart() == 1 %}
+                        produit
+                    {% elseif CartService.countCart() == 0 %}
+
+                    {% else %}
+                        produits
+                    {% endif %})
+                    </small>
+                </a>
             </div>
         </div>
     </nav>

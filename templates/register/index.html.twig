@@ -3,6 +3,9 @@
 {% block full_height %}{% endblock %}
 
 {% block content %}
-    <h1>Inscription</h1>
-    {{ form(form) }}
+    <div class="block-small">
+        <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
+        {{ form(form) }}
+        <p class="text-center">Souhaitez-vous <a href="{{ path('app_login') }}" >vous connecter</a> ?</p>
+    </div>
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block full_height %}{% endblock %}
+
+{% block title %}Valider ma commande - La boutique{% endblock %}
+
+{% block content %}
+    <h1>Ma commande</h1>
+    <p>Veuillez choisir vos préférences :</p>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+                {{ form(form) }}
+            {% endset %}
+            {{ formHtml | replace({'[br]' : '<br/>'}) | raw}}
+
+            <b>Choisir mon transporteur</b>
+        </div>
+        <div class="col-md-6">
+            <b>Récap de ma commande</b><br>
+            <b>Bouton "Payer"</b>
+        </div>
+    </div>
+{% endblock %}
