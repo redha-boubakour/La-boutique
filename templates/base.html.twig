@@ -12,7 +12,8 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    {% block javascript %}
+    {% endblock %}
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -31,6 +32,7 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/css/carousel.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <header>
@@ -152,4 +154,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 </body>
+{% block script %}
+{% endblock %}
 </html>
