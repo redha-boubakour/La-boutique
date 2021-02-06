@@ -26,7 +26,7 @@
             <div class="order-sumary-item">
                 {{ carrier.name }} <br>
                 {{ carrier.description }} <br>
-                {{ (carrier.price)|number_format(2) }} €
+                {{ (carrier.price / 100)|number_format(2, '.', ' ') }} €
             </div>
         </div>
         <div class="col-md-6">
@@ -41,17 +41,17 @@
                             {{ item.product.name }}<br/>
                             <small>x {{ item.quantity }}</small>
                         </div>
-                        <div class="col-3 my-auto">{{ (item.product.price * item.quantity / 100)|number_format(2) }} €</div>
+                        <div class="col-3 my-auto">{{ (item.product.price * item.quantity / 100)|number_format(2, '.', ' ') }} €</div>
                     </div>
                 {% endfor %}
             </div>
 
             <hr>
-            <strong>Sous-total : {{ (total / 100)|number_format(2) }} €</strong><br>
-            <strong>Livraison : {{ (carrier.price)|number_format(2) }} €</strong>
+            <strong>Sous-total : {{ (total / 100)|number_format(2, '.', ' ') }} €</strong><br>
+            <strong>Livraison : {{ (carrier.price / 100)|number_format(2, '.', ' ') }} €</strong>
             <hr>
-            <strong>Total : {{ ((total / 100) + (carrier.price))|number_format(2) }}</strong>
-            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((total / 100) + (carrier.price))|number_format(2) }} €</a>
+            <strong>Total : {{ ((total / 100) + (carrier.price / 100))|number_format(2, '.', ' ') }} €</strong>
+            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((total / 100) + (carrier.price / 100))|number_format(2, '.', ' ') }} €</a>
         </div>
     </div>
 {% endblock %}
