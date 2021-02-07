@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block full_height %}{% endblock %}
+
+{% block title %}Historique des commandes - La boutique{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-3 font-weight-normal">Historique de mes commandes</h1>
+    <a href="{{ path('account') }}">Retourner à mon compte</a>
+    <br><br>
+
+    {% if orders | length == 0 %}
+        Vous n'avez auncune commande pour le moment.
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Référence</th>
+                    <th scope="col">Passée le</th>
+                    <th scope="col">Produit(s)</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td><span class="badge badge-secondary">{{ order.reference }}</span></td>
+                        <td>{{ order.createdAt | date('d/m/Y')}}</td>
+                        <td>{{ order.orderDetails | length }}</td>
+                        <td>{{ ((order.carrierPrice + order.getTotal) / 100) | number_format(2, '.', ' ') }} €</td>
+                        <td class="text-right"><a href="{{ path('account_order_show', {'reference' : order.reference}) }}">Voir ma commande</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
