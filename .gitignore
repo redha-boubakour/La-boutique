@@ -9,6 +9,7 @@
 /public/bundles/
 /var/
 /vendor/
+/src/Classe/MailService.php
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
