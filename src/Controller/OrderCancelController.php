@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MailService;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,11 @@ class OrderCancelController extends AbstractController
         }
 
         // Envoyer un mail d'erreur
+
+        $mailService = new MailService();
+        $content = 'Oups.. il y a eu une eurreur lors de votre processus de paiement, veuillez réessayer via le lien ci-dessous.';
+
+        $mailService->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Echec de paiement !', $content);
 
         return $this->render('order_cancel/index.html.twig', [
             'order' => $order
