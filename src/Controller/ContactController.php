@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Controller;
+
+use App\Classe\MailService;
+use App\Form\ContactType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class ContactController extends AbstractController
+{
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function index(Request $request): Response
+    {
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('notice', 'Merci de nous avoir contacté. Nos equipes vont vous repondre dans les meilleurs délais !');
+            $data = $form->getData();
+
+            // Envoyer un mail de confirmation
+            $mailService = new MailService();
+
+            $subject = $data['firstname'] . ' - ' . $data['lastname'] . ' - ' . $data['email'];
+            $content =  $data['content'] ;
+
+            $mailService->send('c.redikan@gmail.com', 'L\'administrateur', $subject, $content);
+        }
+
+        return $this->render('contact/index.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+}

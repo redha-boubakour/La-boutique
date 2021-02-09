@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - La boutique{% endblock %}
+
+{% block full_height %}{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-3 font-weight-normal">Nous contacter</h1>
+    <hr class ="mb-5">
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form(form)}}
+        </div>
+        <div class="col-md-6 text-center align-self-center">
+            <strong>Tel : </strong>06 XX XX XX XX<br>
+            <strong>Email : </strong>XXX@laBoutique.com<br>
+            <strong>Adresse : </strong>XXX, 59 000, Lille
+        </div>
+    </div>
+{% endblock %}
