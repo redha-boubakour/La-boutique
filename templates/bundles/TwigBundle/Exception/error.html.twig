@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur - La boutique{% endblock %}
+
+{% block full_height %}{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-3 font-weight-normal">Page introuvable</h1>
+    <p>Oups... cette page ne semble pas exister.</p>
+    <a href="{{ path('home') }}" class="btn btn-info">Retourner à l'acceuil</a>
+{% endblock %}

@@ -50,13 +50,10 @@ class RegisterController extends AbstractController
 
                 $mailService->send($user->getEmail(), $user->getFirstname(), 'Bienvenue sur la Boutique !', $content);
 
-                $notification = 'Votre inscription s\'est correctement déroulée.';
+                $notification = 'Votre inscription s\'est correctement déroulée et un mail vient de vous être envoyé. Vous pouvez dès à present vous connecter';
             } else {
                 $notification = 'L\'email existe déjà.';
             }
-
-
-
         }
 
         return $this->render('register/index.html.twig', [
