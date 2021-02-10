@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block full_height %}{% endblock %}
+
+{% block title %}Mot de passe oublié - La boutique{% endblock %}
+
+{% block content %}
+<div class="block-small">
+    <h1 class="h3 mb-3 font-weight-normal">Réinitialiser votre mot de passe</h1>
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+    <form method="post">
+        <label for="inputEmail">Votre email</label>
+        <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
+
+        <br>
+        <button class="btn btn-lg btn-primary btn-block btn-sm" type="submit">
+            Valider
+        </button><br>
+
+        <p class="text-center">
+            Souhaitez-vous <a href="{{ path('register') }}" >Créer un compte</a> ?<br>
+            Avez-vous <a href="{{ path('app_login') }}" >Retourner à la page de connexion</a> ?
+        </p>
+    </form>
+</div> 
+{% endblock %}
