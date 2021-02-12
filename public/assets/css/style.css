@@ -1,3 +1,5 @@
+/* Quelques ajustements */
+
 .navbar-item-custom, .navbar-item-custom a {
     color: #fff;
 }
@@ -39,12 +41,6 @@ margin-top: 150px;
     margin-bottom: 5px;
 }
 
-@media (max-width: 850px) {
-    .mobile-thumbnail {
-        width: 60% !important;
-    }
-}
-
 .block-small {
     max-width: 600px;
     margin : 0 auto;
@@ -64,7 +60,68 @@ margin-top: 150px;
 }
 
 .order-sumary-item {
-    
     padding: 15px;
+}
 
+/* Style du popup des information */
+
+.container-info {
+    position: absolute;
+    top: 7%;
+    right: 10px;
+    width: 600px;
+    background: none;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.container-info span {
+    float: right;
+    margin-right: 32px;
+    font-size: 30px ;
+}
+
+.container-info h1 {
+    margin: 25px;
+}
+
+.inner-info {
+    float: right;
+    position: absolute;
+    padding: 1.5em;
+    background: red;
+    color: white;
+    border-radius: 10px;
+    clip-path: circle(6% at 90% 10%);
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    float:right;
+}
+
+.container-info:hover .inner-info {
+    clip-path: circle(75%);
+    background: white;
+    color: black;
+}
+
+.container-info:hover span {
+    visibility: hidden;
+}
+
+@media (max-width: 600px) {
+
+    .container-info span {
+        float: right;
+        margin-right: 18px;
+        font-size: 30px ;
+    }
+
+    .container-info {
+        right: 10px;
+        width: 95%;
+    }
+
+    .mobile-thumbnail {
+        width: 60% !important;
+    }
 }
