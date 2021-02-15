@@ -5,12 +5,19 @@
 {% block content %}
     <div class="row justify-content-between">
         <div class="col-md-3">
-            <h3>Filtrer</h3>
-            {{ form(form) }}
+            <h3>Filtrer en asynchrone</h3><br>
+            <form id="filters">
+                {% for categorie in categories %}
+                <div>
+                    <input type="checkbox" name="categories[]" id="{{ categorie.id }}" value="{{ categorie.id }}">
+                    <label for="{{ categorie.id }}">{{ categorie.name }}</label>
+                </div>
+                {% endfor %}
+            </form>
         </div>
         <div class="col-md-8">
             <h3>Nos produits</h3>
-            <div class="row product-container">
+            <div class="row product-container" id="content">
                 {% for product in products %}
                     <div class="col-md-4">
                         {% include 'product/single_product.html.twig' %}
@@ -19,4 +26,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('assets/js/filters.js') }}"></script>
 {% endblock %}

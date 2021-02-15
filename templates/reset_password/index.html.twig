@@ -12,17 +12,16 @@
     {% endfor %}
     <form method="post">
         <label for="inputEmail">Votre email</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
-
-        <br>
+        <input type="email" name="email" id="inputEmail" class="form-control" required autofocus><br>
         <button class="btn btn-lg btn-primary btn-block btn-sm" type="submit">
             Valider
         </button><br>
-
-        <p class="text-center">
-            Souhaitez-vous <a href="{{ path('register') }}" >Créer un compte</a> ?<br>
-            Avez-vous <a href="{{ path('app_login') }}" >Retourner à la page de connexion</a> ?
-        </p>
     </form>
+
+    <p class="text-center">
+        Souhaitez-vous <a href="{{ path('register') }}" >Créer un compte</a> ?<br>
+        Avez-vous <a href="{{ path('app_login') }}" >Retourner à la page de connexion</a> ?
+    </p>
+
 </div> 
 {% endblock %}
