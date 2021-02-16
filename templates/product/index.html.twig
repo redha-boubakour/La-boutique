@@ -2,14 +2,22 @@
 
 {% block title %}Nos produits - La boutique{% endblock %}
 
+{% set queryParams = app.request.query.all %}
+
 {% block content %}
     <div class="row justify-content-between">
         <div class="col-md-3">
             <h3>Filtrer en asynchrone</h3><br>
             <form id="filters">
                 {% for categorie in categories %}
+                    {# Verification de l'existance des catégories dans les paramètres de l'URL#}
+                    {% if queryParams is not empty and queryParams.categories is defined %}
+                        {% set checked = (categorie.id in queryParams.categories) ? "checked" : "" %}
+                    {% else %}
+                        {% set checked = "" %}
+                    {% endif %}
                 <div>
-                    <input type="checkbox" name="categories[]" id="{{ categorie.id }}" value="{{ categorie.id }}">
+                    <input type="checkbox" name="categories[]" id="{{ categorie.id }}" value="{{ categorie.id }}" {{checked}}>
                     <label for="{{ categorie.id }}">{{ categorie.name }}</label>
                 </div>
                 {% endfor %}

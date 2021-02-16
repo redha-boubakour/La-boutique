@@ -30,10 +30,12 @@ window.onload = () => {
                 // Chercher la zone de contenu
                 const content = document.querySelector("#content")
                 
-                //on remplace le contenu
+                // On remplace le contenu
                 content.innerHTML = data.content;
-            }).catch(e => alert(e));
 
+                // Mise à jour de l'URL
+                history.pushState({}, null, Url.pathname + "?" + Params.toString());
+            }).catch(e => alert(e));
         });
     });
 }
